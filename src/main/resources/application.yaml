@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: rabbitmq_sender_2026
+
+  main:
+    banner-mode: off
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: admin
+    password: 1q2w3e4R
+    virtual-host: /
+    publisher-confirm-type: correlated
+    publisher-returns: true
+
+app:
+  rabbitmq:
+    exchange: order.exchange
+    routing-key: order.created
+
+server:
+  port: 38081
