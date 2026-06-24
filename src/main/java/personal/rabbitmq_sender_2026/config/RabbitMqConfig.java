@@ -22,13 +22,19 @@ public class RabbitMqConfig {
     public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory, JacksonJsonMessageConverter jacksonJsonMessageConverter) {
         RabbitTemplate template = new RabbitTemplate(connectionFactory);
         template.setMessageConverter(jacksonJsonMessageConverter);
+
+        // broker 确认收到，通常是到达 exchange
         template.setConfirmCallback((CorrelationData correlationData, boolean ack, String cause) -> {
             if (!ack) {
+                // broker 没确认，发送失败或被 broker 拒绝，原因在 cause 里
                 log.error("Message NOT acknowledged: {}", cause);
             } else {
+                // RabbitMQ broker 已确认收到消息，通常表示消息成功到达 exchange
                 log.info("Message acknowledged: {}", correlationData);
             }
         });
+
+        // 没有被退回，通常说明成功路由到队列
         template.setReturnsCallback(returned -> log.error("Message returned: {}", returned.getReplyText()));
         return template;
     }

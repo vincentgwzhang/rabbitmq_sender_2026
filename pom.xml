@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>4.0.0</version>
+        <version>4.1.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>personal</groupId>
@@ -13,21 +13,10 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>rabbitmq_sender_2026</name>
     <description>rabbitmq_sender_2026</description>
-    <url/>
-    <licenses>
-        <license/>
-    </licenses>
-    <developers>
-        <developer/>
-    </developers>
-    <scm>
-        <connection/>
-        <developerConnection/>
-        <tag/>
-        <url/>
-    </scm>
+
     <properties>
         <java.version>25</java.version>
+        <instancio.version>5.6.0</instancio.version>
     </properties>
     <dependencies>
         <dependency>
@@ -53,7 +42,7 @@
         <dependency>
             <groupId>org.instancio</groupId>
             <artifactId>instancio-core</artifactId>
-            <version>5.5.1</version>
+            <version>${instancio.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
